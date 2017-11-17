@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>tree</title>
+	<script type="text/javascript" src="assets/js/core/libraries/jquery.min.js"></script>
+    <script type="text/javascript" src="assets/js/echarts.min1.js"></script>
+</head>
+<body>
+	<div id="main" style="height: 600px;width: 800px">
+	</div>
+	<script type="text/javascript">
+		var myChart=echarts.init(document.getElementById('main'));
+		// myChart.showLoading();
+		$.get("assets/demo_data/fancytree/fancytree1.json",function(data){
+		//console.log(data);
+			alert(data[0].epoch);
+			 var option = {
+                 tooltip: {
+                     trigger: 'item',
+                     triggerOn: 'mousemove'
+                 },
+                 series: [
+                     {
+                         type:'tree',
+                         name: "树",
+                         data: [
+                             {
+                                name: data[0].epoch,
+//								 name:"bala",
+								 children:[
+									 {
+                                         type:'tree',
+                                         name: data[0].demi_epoches[0].taglist[0].name,
+								 		 children:data[0].demi_epoches[0].taglist[0].poetlist
+									 },
+                                     {
+                                         type:'tree',
+                                         name: "2",
+                                     }
+								 ],
+                             }
+                         ],
+                         top: '1%',
+                         left: '8%',
+                         bottom: '2%',
+                         right: '20%',
+                         symbolSize: 10,
+                         label: {
+                             normal: {
+                                 position: 'left',
+                                 verticalAlign: 'middle',
+                                 align: 'right',
+                                 fontSize: 9
+                             }
+                         },
+                         leaves: {
+                             label: {
+                                 normal: {
+                                     position: 'right',
+                                     verticalAlign: 'middle',
+                                     align: 'left'
+                                 }
+                             }
+                         },
+
+                         expandAndCollapse: true,
+                         animationDuration: 550,
+                         animationDurationUpdate: 750
+                     }
+                 ]
+             };
+            myChart.setOption(option);
+		});
+
+	</script>
+</body>
+</html>
