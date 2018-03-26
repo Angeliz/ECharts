@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>echarts</title>
+	<script type="text/javascript" src="./echarts4.js"></script>
+</head>
+<body>
+	<div id="myChart" style="width: 800px;height: 600px">
+		
+	</div>
+</body>
+<script type="text/javascript">
+	var myChart=echarts.init(document.getElementById('myChart'));
+
+	option = {
+	    // backgroundColor: '#2c343c',
+
+	    title: {
+	        text: '词频统计',
+	        left: 'center',
+	        top: 30,
+	        textStyle: {
+	            // color: '#ccc'
+	            color:'black'
+	        }
+	    },
+
+	    tooltip : {
+	        trigger: 'item',
+	        formatter: "{a} <br/>{b} : {c} ({d}%)"
+	    },
+
+	    visualMap: {
+	        show: false,
+	        min: 80,
+	        max: 600,
+	        inRange: {
+	            colorLightness: [0, 1]
+	        }
+	    },
+	    series : [
+	        {
+	            name:'访问来源',
+	            type:'pie',
+	            radius : '55%',
+	            center: ['50%', '50%'],
+	            data:[
+	                {value:26, name:'高校图书馆（26）'},
+	                {value:24, name:'图书馆（24）'},
+	                {value:20, name:'信息资源建设（20）'},
+	                {value:13, name:'资源建设（13）'},
+	                {value:11, name:'信息资源（11）'},
+	                {value:10, name:'信息服务（10）'},
+	                {value:9, name:'数字资源（9）'},
+	                {value:7, name:'公共图书馆（7）'},
+	                {value:6, name:'数字资源建设（6）'},
+	                {value:6, name:'开放获取（6）'},
+	                {value:6, name:'资源共享（6）'},
+	                {value:6, name:'数字图书馆（6）'},
+	                {value:5, name:'大数据（5）'},
+	                {value:5, name:'服务模式（5）'},
+	                {value:4, name:'公共数字文化资源建设（4）'}
+	            ].sort(function (a, b) { return a.value - b.value; }),
+	            roseType: 'radius',
+	            label: {
+	                normal: {
+	                    textStyle: {
+	                        // color: 'rgba(255, 255, 255, 0.3)'
+	                        color: 'black'
+	                    }
+	                }
+	            },
+	            labelLine: {
+	                normal: {
+	                    lineStyle: {
+	                        // color: 'rgba(255, 255, 255, 0.3)'
+	                        color: 'black'
+	                    },
+	                    smooth: 0.2,
+	                    length: 10,
+	                    length2: 20
+	                }
+	            },
+	            itemStyle: {
+	                normal: {
+	                    // color: '#c23531',
+	                    color:'blue'
+	                    // shadowBlur: 200,
+	                    // shadowColor: 'rgba(0, 0, 0, 0.5)'
+	                }
+	            },
+
+	            animationType: 'scale',
+	            animationEasing: 'elasticOut',
+	            animationDelay: function (idx) {
+	                return Math.random() * 200;
+	            }
+	        }
+	    ]
+	};
+	myChart.setOption(option);
+</script>
+</html>
